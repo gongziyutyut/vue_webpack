@@ -16,6 +16,7 @@ module.exports = {
     // 资源引用的路径
     publicPath: './'
   },
+
   module: {
     rules: [
       {
@@ -50,6 +51,98 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'img/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(mp3|webm|ogg|mp4|wav|flac|aac)(\?.*)?$/, // 媒体文件
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,  // 文件大小限制（vue脚手架中限制为10000）
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'media/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)$/, //字体图标转换
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'fonts/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'cache-loader',
+          },
+          {
+            loader: 'thread-loader',
+          },
+          {
+            loader: 'vue-loader',
+            options: {
+              complierOptions: {
+                preserveWhitespace: false
+              }
+            }
+          },
+        ]
+      },
+      {
+        test: /\.jsx?$/,
+        
+      }
     ]
-  }
+  },
+
+  devServer: {
+    hot: true,
+    port: 3000,
+    contentBase: './dist'
+  },
+
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.runtime.esm.js'
+    }
+  },
+
+  plugins:[
+    new HTMLWebpackPlugin({
+      template: path.resolve(__dirname, '../dist/index.html')
+    })
+  ]
 }
