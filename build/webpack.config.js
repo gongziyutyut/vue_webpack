@@ -1,11 +1,12 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+//const VueLoaderPlugin = require('vue-loader/lib/style-compiler') 路径不对
 module.exports = {
   // 指定打包的模式
-  mode: 'development',
+  //mode: 'development',
   entry: {
     // 配置入口文件
-    main: ["@babel/polyfill", path.resolve(__dirname, '../src/main.js')],
+    main: './src/main.js'
   },
   output: {
     // 配置打包文件输出的目录
@@ -123,7 +124,17 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'thread-loader'
+          },
+          {
+            loader: 'babel-loader'
+          }
+        ]
       }
     ]
   },
@@ -143,6 +154,11 @@ module.exports = {
   plugins:[
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, '../dist/index.html')
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        VUE_APP_BASE_URL: JSON.stringify('http://localhost:3000')
+      }
     })
   ]
 }

@@ -1,6 +1,9 @@
-console.log('hello world')
-let i = 2;
-()=> {
-  console.log(111)
-  console.log(222222)
-}
+import Vue from 'vue';
+import App from './app.vue';
+
+new Vue({
+  components: {
+    App
+  },
+  template: '<App/>'
+})
