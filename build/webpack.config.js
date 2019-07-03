@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-//const VueLoaderPlugin = require('vue-loader/lib/style-compiler') 路径不对
+const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin') 
 module.exports = {
   // 指定打包的模式
   //mode: 'development',
@@ -148,17 +149,19 @@ module.exports = {
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.runtime.esm.js'
-    }
+    },
+    extensions: [
+      '.js',
+      '.vue'
+    ]
   },
 
   plugins:[
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, '../dist/index.html')
+      template: path.resolve(__dirname, '../public/index.html')
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        VUE_APP_BASE_URL: JSON.stringify('http://localhost:3000')
-      }
-    })
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new VueLoaderPlugin()
   ]
 }

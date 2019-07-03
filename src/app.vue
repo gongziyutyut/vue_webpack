@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     hello FE
   </div>
 </template>
@@ -14,8 +14,6 @@ export default {
 }
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped> 
-#app {
-  color: red
-}
+
 </style>
 
