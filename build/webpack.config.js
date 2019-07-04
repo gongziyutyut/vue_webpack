@@ -16,7 +16,7 @@ module.exports = {
     filename: 'js/[name].[hash:8].js',
     chunkFilename: 'js/[name].[hash:8].js',
     // 资源引用的路径
-    publicPath: './'
+    publicPath: '/'
   },
 
   module: {
@@ -138,12 +138,6 @@ module.exports = {
         ]
       }
     ]
-  },
-
-  devServer: {
-    hot: true,
-    port: 3000,
-    contentBase: './dist'
   },
 
   resolve: {

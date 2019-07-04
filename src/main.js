@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import App from './app.vue';
+import router from './router/index'
 
 new Vue({
+  router,
   components: {
     App
   },
-  template: '<App/>'
-})
+  render: h => h(App)
+}).$mount('#app')
