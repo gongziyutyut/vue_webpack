@@ -31,29 +31,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.(scss|sass)$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('dart-sass')
-            }
-          },
-          {
-            loader: 'postcss-loader'
-          }
-        ]
-      },
-      {
         test: /\.(jpe?g|png|gif)$/,
         use: [
           {

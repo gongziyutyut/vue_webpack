@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     111111111111
-    <button @click="clickHandler"></button>
+    <button @click="clickHandler" class="btn">按钮</button>
   </div>
 </template>
 
@@ -25,5 +25,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  
+  .home {
+    background: green;
+    .btn {
+      border: none;
+    }
+  }
 </style>
