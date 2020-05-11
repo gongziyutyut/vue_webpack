@@ -2,6 +2,9 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin') 
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 module.exports = {
   // 指定打包的模式
   //mode: 'development',
@@ -119,7 +122,8 @@ module.exports = {
 
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.runtime.esm.js'
+      vue$: 'vue/dist/vue.runtime.esm.js',
+      '@': resolve('src'),
     },
     extensions: [
       '.js',

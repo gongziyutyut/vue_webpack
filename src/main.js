@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import App from './app.vue';
+import './asset/js/jquery.min.js'
 import router from './router/index';
 import store from './store/index';
-
+window.jQuery = $
 new Vue({
   store,
   router,

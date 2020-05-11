@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const webpackConfig = require('./webpack.config');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin') //拷贝静态资源
+let styleVariables = require('../src/asset/js/scssVariable')
 
 module.exports = merge(webpackConfig, {
   mode: "development",
@@ -29,7 +30,10 @@ module.exports = merge(webpackConfig, {
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('dart-sass')
+              implementation: require('dart-sass'),
+              data: Object.keys(styleVariables)
+              .map(k => `\$${k}: ${styleVariables[k]};`)
+              .join('\n')
             }
           },
           {
