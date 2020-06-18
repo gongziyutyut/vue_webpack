@@ -1,16 +1,21 @@
 <template>
   <div class="about">
     About222222222
+    <Grandpa :name="name" :oppo="oppo"></Grandpa>
   </div>
 </template>
 
 <script>
+import Grandpa from '@/components/grandpa'
 export default {
-  name: '',
   data() { 
     return {
-
+      name: 'grandpa',
+      oppo: "OPPO"
     }
+  },
+  components: {
+    Grandpa
   },
 
   created() {
